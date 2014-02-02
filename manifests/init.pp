@@ -67,12 +67,12 @@ class jdk_oracle(
             file { '/etc/alternatives/java':
                 ensure  => link,
                 target  => "${java_home}/bin/java",
-                require => Exec['extract_jdk'],
+                require => Exec['install_rpm'],
             }
             file { '/etc/alternatives/javac':
                 ensure  => link,
                 target  => "${java_home}/bin/javac",
-                require => Exec['extract_jdk'],
+                require => Exec['install_rpm'],
             }
             file { '/usr/sbin/java':
                 ensure  => link,
@@ -87,7 +87,7 @@ class jdk_oracle(
             file { '/opt/java_home':
                 ensure  => link,
                 target  => $java_home,
-                require => Exec['extract_jdk'],
+                require => Exec['install_rpm'],
             }
         }
         Debian:    { fail('TODO: Implement me!') }
