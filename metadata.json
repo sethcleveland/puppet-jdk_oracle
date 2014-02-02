@@ -1,0 +1,13 @@
+{
+  "name": "schrepfler-jdk_oracle",
+  "version": "0.8.0",
+  "summary": "Module for automating Oracle JDK download and installation",
+  "author": "schrepfler",
+  "description": "Module for automating Oracle JDK download and installation\nfork of tylerwalts module",
+  "dependencies": [],
+  "types": [],
+  "checksums": {},
+  "source": "https://github.com/schrepfler/puppet-jdk_oracle",
+  "project_page": "https://github.com/schrepfler/puppet-jdk_oracle",
+  "license": "Apache License, Version 2.0"
+}

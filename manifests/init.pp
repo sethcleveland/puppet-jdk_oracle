@@ -5,6 +5,8 @@
 #
 class jdk_oracle(
     $version      = hiera('jdk_oracle::version',     '7' ),
+    $version7update = hiera('jdk_oracle::version::7::update', '51'),
+    $version7build = hiera('jdk_oracle::version::7::build', '-b13'),
     $install_dir  = hiera('jdk_oracle::install_dir', '/opt' ),
     $use_cache    = hiera('jdk_oracle::use_cache',   false ),
     ) {
@@ -14,12 +16,8 @@ class jdk_oracle(
 
     case $version {
         '7': {
-            $javaDownloadURI = 'http://download.oracle.com/otn-pub/java/jdk/7/jdk-7-linux-x64.tar.gz'
+            $javaDownloadURI = 'http://download.oracle.com/otn-pub/java/jdk/7u${version7update}${version7build}/jdk-7u${version7update}-linux-x64.rpm'
             $java_home = "${install_dir}/jdk1.7.0"
-        }
-        '6': {
-            $javaDownloadURI = 'http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin'
-            $java_home = "${install_dir}/jdk1.6.0_45"
         }
         default: {
             fail("Unsupported version: ${version}.  Implement me?")
@@ -37,7 +35,7 @@ class jdk_oracle(
             cwd     => $install_dir,
             creates => "${install_dir}/jdk_from_cache",
             command => 'touch jdk_from_cache',
-            require => File["${install_dir}/jdk-${version}-linux-x64.tar.gz"],
+            require => File["${install_dir}/jdk-${version}u${version7update}-linux-x64.rpm"],
         }
     } else {
         exec { 'get_jdk_installer':
@@ -49,26 +47,17 @@ class jdk_oracle(
         }
         file { "${install_dir}/${installerFilename}":
             mode    => '0755',
-            require => Exec['get_jdk_installer'],
+            require => Exec['install_rpm'],
         }
     }
 
     # Java 7 comes in a tarball so just extract it.
     if ( $version == '7' ) {
-        exec { 'extract_jdk':
+        exec { 'install_rpm':
             cwd     => "${install_dir}/",
-            command => "tar -xf ${installerFilename}",
+            command => "rpm -i ${installerFilename}",
             creates => $java_home,
             require => Exec['get_jdk_installer'],
-        }
-    }
-    # Java 6 comes as a self-extracting binary
-    if ( $version == '6' ) {
-        exec { 'extract_jdk':
-            cwd     => "${install_dir}/",
-            command => "${install_dir}/${installerFilename}",
-            creates => $java_home,
-            require => File["${install_dir}/${installerFilename}"],
         }
     }
 
