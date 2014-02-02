@@ -3,8 +3,6 @@ puppet-jdk_oracle
 
 Puppet module to install a JDK from oracle using wget.
 
-[![Build Status](https://travis-ci.org/tylerwalts/puppet-jdk_oracle.png?branch=master)](https://travis-ci.org/tylerwalts/puppet-jdk_oracle)
-
 Source: http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 _Note:  By using this module you will automatically accept the Oracle agreement to download Java._
@@ -16,8 +14,7 @@ This approach was inspired by: http://stackoverflow.com/questions/10268583/how-t
 
 Currently Supported:
 * RedHat Family (RedHat, Fedora, CentOS)
-* Java 6, 7
-
+* Java 7
 
 Installation:
 =============
@@ -29,7 +26,7 @@ B) Puppet Librarian:
 * Put this in your Puppetfile:
 ```
     mod "jdk_oracle",
-        :git => "git://github.com/tylerwalts/puppet-jdk_oracle.git"
+        :git => "git://github.com/schrepfler/puppet-jdk_oracle.git"
 ```
 
 
@@ -77,6 +74,10 @@ Parameters:
     * Java Version to install
 * java_install_dir
     * Java Installation Directory
+* version7update
+	* Java 7  Update version
+* version7build
+	* Java 7 Build version
 * use_cache
     * Optionally host the installer file locally instead of fetching it each time, for faster dev & test
 
@@ -84,10 +85,6 @@ Parameters:
 TODO:
 =====
 
-* Add links for other OS families
 * Automate installation of security policies
-
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tylerwalts/puppet-jdk_oracle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+* Refactor tests which still work against tgz package
+* Add build status icons
