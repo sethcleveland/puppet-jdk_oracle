@@ -16,7 +16,7 @@ class jdk_oracle(
 
     case $version {
         '7': {
-            $javaDownloadURI = 'http://download.oracle.com/otn-pub/java/jdk/7u${version7update}${version7build}/jdk-7u${version7update}-linux-x64.rpm'
+            $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/7u${version7update}${version7build}/jdk-7u${version7update}-linux-x64.rpm"
             $java_home = "${install_dir}/jdk1.7.0"
         }
         default: {
