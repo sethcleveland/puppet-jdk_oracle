@@ -22,17 +22,6 @@ describe 'jdk_oracle', :type => 'class' do
             }
         end
 
-        context 'specifying version 6' do
-            let :params do {
-                :version => '6',
-            } end
-
-            it {
-                should contain_file('/opt/jdk-6u45-linux-x64.bin')
-                should contain_exec('extract_jdk').with_creates('/opt/jdk1.6.0_45')
-            }
-        end
-
         context 'using custom installation directory' do
             let :params do {
                 :install_dir => '/my/path',
