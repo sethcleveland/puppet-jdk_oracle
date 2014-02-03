@@ -12,36 +12,12 @@ describe 'jdk_oracle', :type => 'class' do
 
         context 'with default parameters' do
             it {
-                should contain_exec( 'get_jdk_installer').with_creates('/opt/jdk-7-linux-x64.tar.gz')
-                should contain_file('/opt/jdk-7-linux-x64.tar.gz')
-                should contain_exec('extract_jdk').with_creates('/opt/jdk1.7.0')
+                should contain_exec( 'get_jdk_installer').with_creates('/opt/jdk-7u51-linux-x64.rpm')
+                should contain_file('/opt/jdk-7u51-linux-x64.rpm')
+                should contain_exec('install_rpm').with_creates('/opt/jdk1.7.0')
                 should contain_file('/etc/alternatives/java').with({
                     :ensure  => 'link',
                     :target  => '/opt/jdk1.7.0/bin/java',
-                })
-            }
-        end
-
-        context 'using custom installation directory' do
-            let :params do {
-                :install_dir => '/my/path',
-                :version => '6',
-            } end
-
-            it {
-                should contain_file('/my/path/jdk-6u45-linux-x64.bin')
-                should contain_exec('extract_jdk').with_creates('/my/path/jdk1.6.0_45')
-            }
-        end
-
-        context 'using cache source' do
-            let :params do {
-                :use_cache => true,
-            } end
-
-            it {
-                should contain_file('/opt/jdk-7-linux-x64.tar.gz').with({
-                    :source => 'puppet:///modules/jdk_oracle/jdk-7-linux-x64.tar.gz',
                 })
             }
         end
