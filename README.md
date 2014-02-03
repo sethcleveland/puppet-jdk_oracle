@@ -1,13 +1,14 @@
 puppet-jdk_oracle
 =================
 
-Puppet module to install a JDK from oracle using wget.
+Puppet module to install a JDK from the RPM binary distribution from oracle using wget.
+Based on the https://github.com/tylerwalts/puppet-jdk_oracle this module removed support for JDK6 and the tgz installer.
 
 Source: http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 _Note:  By using this module you will automatically accept the Oracle agreement to download Java._
 
-There are several puppet modules available that will help install Oracle JDK, but they either use the Debian repository, or depend on the user to manually place the Oracle Java installer in the module's file directory prior to using.  This module will work on Redhat family of OSs, and will use wget with a cookie to automatically grab the installer from Oracle.
+This module will work on Redhat family of OSs, and will use wget with a cookie to automatically grab the RPM installer from Oracle.
 
 This approach was inspired by: http://stackoverflow.com/questions/10268583/how-to-automate-download-and-instalation-of-java-jdk-on-linux
 
