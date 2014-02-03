@@ -87,5 +87,6 @@ TODO:
 =====
 
 * Automate installation of security policies
-* Refactor tests which still work against tgz package
+* Refactor tests to support some use cases of the tgz module
+* Add support for 32-bit JDK
 * Add build status icons
