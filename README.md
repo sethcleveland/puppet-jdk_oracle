@@ -59,7 +59,7 @@ config.yaml:
 ---
   classes: 
     - "jdk_oracle"
-  jdk_oracle::version: "6"
+  jdk_oracle::version: "7"
 ```
 
 site.pp:
