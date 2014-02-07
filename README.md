@@ -90,3 +90,4 @@ TODO:
 * Refactor tests to support some use cases of the tgz module
 * Add support for 32-bit JDK
 * Add build status icons
+* Make it possible to uninstall the jdk package
