@@ -4,17 +4,22 @@
 # locally host the tarball from oracle instead of fetching it each time.
 #
 class jdk_oracle(
-    $version      = hiera('jdk_oracle::version',     '7' ),
-    $version7update = hiera('jdk_oracle::version::7::update', '51'),
-    $version7build = hiera('jdk_oracle::version::7::build', '-b13'),
-    $install_dir  = hiera('jdk_oracle::install_dir', '/opt' ),
-    $use_cache    = hiera('jdk_oracle::use_cache',   false ),
+    $version      = hiera('jdk_oracle::version',                '8' ),
+    $version7update = hiera('jdk_oracle::version::7::update',   '51'),
+    $version7build = hiera('jdk_oracle::version::7::build',     '-b13'),
+    $version8build = hiera('jdk_oracle::version::8::build',     '-b132'),
+    $install_dir  = hiera('jdk_oracle::install_dir',            '/opt' ),
+    $use_cache    = hiera('jdk_oracle::use_cache',              false ),
     ) {
 
     # Set default exec path for this module
     Exec { path    => ['/usr/bin', '/usr/sbin', '/bin'] }
 
     case $version {
+        '8': {
+            $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/8-${version8build}/jdk-8-linux-x64.rpm"
+            $java_home = "${install_dir}/jdk1.8.0"
+        }
         '7': {
             $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/7u${version7update}${version7build}/jdk-7u${version7update}-linux-x64.rpm"
             $java_home = "${install_dir}/jdk1.7.0"
@@ -51,8 +56,7 @@ class jdk_oracle(
         }
     }
 
-    # Java 7 comes in a tarball so just extract it.
-    if ( $version == '7' ) {
+    if ( $version == '7' or $version == '8') {
         exec { 'install_rpm':
             cwd     => "${install_dir}/",
             command => "rpm -i ${installerFilename}",
