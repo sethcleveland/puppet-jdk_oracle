@@ -1,5 +1,5 @@
 name 'schrepfler-jdk_oracle'
-version '0.8.1'
+version '0.9.0'
 
 author 'schrepfler'
 license 'Apache License, Version 2.0'
