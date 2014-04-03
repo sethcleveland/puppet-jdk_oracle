@@ -11,6 +11,10 @@ class jdk_oracle(
     $use_cache    = hiera('jdk_oracle::use_cache',   false ),
     ) {
 
+    package { 'wget':
+	ensure => present,
+    }
+
     # Set default exec path for this module
     Exec { path    => ['/usr/bin', '/usr/sbin', '/bin'] }
 
