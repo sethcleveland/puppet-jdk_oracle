@@ -15,7 +15,7 @@ This approach was inspired by: http://stackoverflow.com/questions/10268583/how-t
 
 Currently Supported:
 * RedHat Family (RedHat, Fedora, CentOS)
-* Java 7
+* Java 7 and Java 8
 
 Installation:
 =============
