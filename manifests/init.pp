@@ -16,7 +16,7 @@ class jdk_oracle(
     # Set default exec path for this module
     Exec { path    => ['/usr/bin', '/usr/sbin', '/bin'] }
 
-    case $version {http://download.oracle.com/otn-pub/java/jdk/8u5-b13/jdk-8u5-linux-i586.rpm
+    case $version {
         '7': {
             $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/7u${version7update}${version7build}/jdk-7u${version7update}-linux-x64.rpm"
             $java_home = "${install_dir}/jdk1.7.0"
