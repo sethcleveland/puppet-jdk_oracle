@@ -4,12 +4,10 @@
 # locally host the tarball from oracle instead of fetching it each time.
 #
 class jdk_oracle(
-    $version      = hiera('jdk_oracle::version',     '7' ),
-    $version7update = hiera('jdk_oracle::version::7::update', '51'),
-    $version7build = hiera('jdk_oracle::version::7::build', '-b13'),
-    $version8update = hiera('jdk_oracle::version::8::update', '5'),
-    $version8build = hiera('jdk_oracle::version::8::build', '-b13'),
-    $install_dir  = hiera('jdk_oracle::install_dir', '/opt' ),
+    $version      = hiera('jdk_oracle::version', '7' ),
+    $arch      = hiera('jdk_oracle::arch', 'x64' ),
+    $install_dir  = hiera('jdk_oracle::install_dir', '/usr/java' ),
+    $tmp_dir  = hiera('jdk_oracle::tmp_dir', '/tmp' ),
     $use_cache    = hiera('jdk_oracle::use_cache',   false ),
     ) {
 
@@ -18,40 +16,43 @@ class jdk_oracle(
 
     case $version {
         '7': {
-            $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/7u${version7update}${version7build}/jdk-7u${version7update}-linux-x64.rpm"
-            $java_home = "${install_dir}/jdk1.7.0"
+            $javaUpdate = hiera('jdk_oracle::version::7::update', '51')
+            $javaBuild = hiera('jdk_oracle::version::7::build', '13')
         }
         '8': {
-            $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/8u${version8update}${version8build}/jdk-8u${version8update}-linux-x64.rpm"
-            $java_home = "${install_dir}/jdk1.8.0"
+            $javaUpdate = hiera('jdk_oracle::version::8::update', '5')
+            $javaBuild = hiera('jdk_oracle::version::8::build', '13')
         }
         default: {
             fail("Unsupported version: ${version}.  Implement me?")
         }
     }
+    
+    $java_home = "${install_dir}/jdk1.$version.0_$javaUpdate"
+    $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/${versuib}u${javaUpdate}-b${javaBuild}/jdk-${version}u${javaUpdate}-linux-${arch}.rpm"
 
     $installerFilename = inline_template('<%= File.basename(@javaDownloadURI) %>')
 
     if ( $use_cache ){
         notify { 'Using local cache for oracle java': }
-        file { "${install_dir}/${installerFilename}":
+        file { "${tmp_dir}/${installerFilename}":
             source  => "puppet:///modules/jdk_oracle/${installerFilename}",
         }
         exec { 'get_jdk_installer':
-            cwd     => $install_dir,
-            creates => "${install_dir}/jdk_from_cache",
+            cwd     => $tmp_dir,
+            creates => "${tmp_dir}/jdk_from_cache",
             command => 'touch jdk_from_cache',
-            require => File["${install_dir}/jdk-${version}u${version7update}-linux-x64.rpm"],
+            require => File["${tmp_dir}/jdk-${version}u${javaUpdate}-linux-x64.rpm"],
         }
     } else {
         exec { 'get_jdk_installer':
-            cwd     => $install_dir,
-            creates => "${install_dir}/${installerFilename}",
+            cwd     => $tmp_dir,
+            creates => "${tmp_dir}/${installerFilename}",
             command => "wget -c --no-cookies --no-check-certificate --header \"Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com oraclelicense=accept-securebackup-cookie\" \"${javaDownloadURI}\" -O ${installerFilename}",
             timeout => 600,
             require => Package['wget'],
         }
-        file { "${install_dir}/${installerFilename}":
+        file { "${tmp_dir}/${installerFilename}":
             mode    => '0755',
             require => Exec['install_rpm'],
         }
@@ -60,7 +61,7 @@ class jdk_oracle(
     # Java 7 comes in a tarball so just extract it.
     if ( $version == '7' ) {
         exec { 'install_rpm':
-            cwd     => "${install_dir}/",
+            cwd     => "${tmp_dir}/",
             command => "rpm -i ${installerFilename}",
             creates => $java_home,
             require => Exec['get_jdk_installer'],
