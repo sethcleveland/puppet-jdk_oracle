@@ -16,6 +16,7 @@ This approach was inspired by: http://stackoverflow.com/questions/10268583/how-t
 Currently Supported:
 * RedHat Family (RedHat, Fedora, CentOS)
 * Java 7 and Java 8
+* 64 and 32 bit architectures.
 
 Installation:
 =============
@@ -88,6 +89,6 @@ TODO:
 
 * Automate installation of security policies
 * Refactor tests to support some use cases of the tgz module
-* Add support for 32-bit JDK
+~~*Add support for 32-bit JDK~~
 * Add build status icons
 * Make it possible to uninstall the jdk package
