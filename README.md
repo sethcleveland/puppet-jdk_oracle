@@ -74,14 +74,16 @@ Parameters:
 
 * version
     * Java Version to install
-* java_install_dir
+* install_dir
     * Java Installation Directory
+* tmp_dir
+    * Temporary install directory  
 * version7update
-	* Java 7  Update version
+    * Java 7  Update version
 * version7build
-	* Java 7 Build version
+    * Java 7 Build version
 * arch 
-	* parameter to provide support for other architectures, default 'x64'
+    * parameter to provide support for other architectures, default 'x64'
 * use_cache
     * Optionally host the installer file locally instead of fetching it each time, for faster dev & test
 
