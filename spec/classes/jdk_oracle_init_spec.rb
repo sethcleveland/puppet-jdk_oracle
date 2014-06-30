@@ -12,12 +12,12 @@ describe 'jdk_oracle', :type => 'class' do
 
         context 'with default parameters' do
             it {
-                should contain_exec( 'get_jdk_installer').with_creates('/opt/jdk-7u51-linux-x64.rpm')
-                should contain_file('/opt/jdk-7u51-linux-x64.rpm')
-                should contain_exec('install_rpm').with_creates('/opt/jdk1.7.0')
+                should contain_exec( 'get_jdk_installer').with_creates('/tmp/jdk-7u51-linux-x64.rpm')
+                should contain_file('/tmp/jdk-7u51-linux-x64.rpm')
+                should contain_exec('install_rpm').with_creates('/usr/java/jdk1.7.0_51')
                 should contain_file('/etc/alternatives/java').with({
                     :ensure  => 'link',
-                    :target  => '/opt/jdk1.7.0/bin/java',
+                    :target  => '/usr/java/jdk1.7.0_51/bin/java',
                 })
             }
         end
