@@ -5,6 +5,7 @@
 #
 class jdk_oracle(
     $version      = hiera('jdk_oracle::version', '7' ),
+    $arch      = hiera('jdk_oracle::arch', 'x64' ),
     $install_dir  = hiera('jdk_oracle::install_dir', '/usr/java' ),
     $tmp_dir  = hiera('jdk_oracle::tmp_dir', '/tmp' ),
     $use_cache    = hiera('jdk_oracle::use_cache',   false ),
@@ -28,7 +29,7 @@ class jdk_oracle(
     }
     
     $java_home = "${install_dir}/jdk1.$version.0_$javaUpdate"
-    $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/${versuib}u${javaUpdate}-b${javaBuild}/jdk-${version}u${javaUpdate}-linux-x64.rpm"
+    $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/${versuib}u${javaUpdate}-b${javaBuild}/jdk-${version}u${javaUpdate}-linux-${arch}.rpm"
 
     $installerFilename = inline_template('<%= File.basename(@javaDownloadURI) %>')
 
