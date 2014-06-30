@@ -7,6 +7,8 @@ class jdk_oracle(
     $version      = hiera('jdk_oracle::version',     '7' ),
     $version7update = hiera('jdk_oracle::version::7::update', '51'),
     $version7build = hiera('jdk_oracle::version::7::build', '-b13'),
+    $version8update = hiera('jdk_oracle::version::8::update', '5'),
+    $version8build = hiera('jdk_oracle::version::8::build', '-b13'),
     $install_dir  = hiera('jdk_oracle::install_dir', '/opt' ),
     $use_cache    = hiera('jdk_oracle::use_cache',   false ),
     ) {
@@ -14,10 +16,14 @@ class jdk_oracle(
     # Set default exec path for this module
     Exec { path    => ['/usr/bin', '/usr/sbin', '/bin'] }
 
-    case $version {
+    case $version {http://download.oracle.com/otn-pub/java/jdk/8u5-b13/jdk-8u5-linux-i586.rpm
         '7': {
             $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/7u${version7update}${version7build}/jdk-7u${version7update}-linux-x64.rpm"
             $java_home = "${install_dir}/jdk1.7.0"
+        }
+        '8': {
+            $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/8u${version8update}${version8build}/jdk-8u${version8update}-linux-x64.rpm"
+            $java_home = "${install_dir}/jdk1.8.0"
         }
         default: {
             fail("Unsupported version: ${version}.  Implement me?")
@@ -41,7 +47,7 @@ class jdk_oracle(
         exec { 'get_jdk_installer':
             cwd     => $install_dir,
             creates => "${install_dir}/${installerFilename}",
-            command => "wget -c --no-cookies --no-check-certificate --header \"Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com\" \"${javaDownloadURI}\" -O ${installerFilename}",
+            command => "wget -c --no-cookies --no-check-certificate --header \"Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com oraclelicense=accept-securebackup-cookie\" \"${javaDownloadURI}\" -O ${installerFilename}",
             timeout => 600,
             require => Package['wget'],
         }
