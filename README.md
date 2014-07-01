@@ -24,7 +24,13 @@ Installation:
 A) Traditional:
 * Copy this project into your puppet modules path and rename to "jdk_oracle"
 
-B) Puppet Librarian:
+B) From Puppet Forge
+* Install from Puppet Forge:
+```
+puppet module install schrepfler-jdk_oracle
+```
+
+C) Puppet Librarian:
 * Put this in your Puppetfile:
 ```
     mod "jdk_oracle",
@@ -77,13 +83,17 @@ Parameters:
 * install_dir
     * Java Installation Directory
 * tmp_dir
-    * Temporary install directory  
+    * Temp directory to download the installer, default `/tmp/`
 * version7update
-    * Java 7  Update version
+    * Latest Java 7 Update version
 * version7build
-    * Java 7 Build version
+    * Latest Java 7 Build version
+* version8update
+    * Latest Java 8 Update version
+* version8build
+    * Latest Java 8 Build version
 * arch 
-    * parameter to provide support for other architectures, default 'x64'
+    * parameter to provide support for other architectures, default `x64`
 * use_cache
     * Optionally host the installer file locally instead of fetching it each time, for faster dev & test
 
