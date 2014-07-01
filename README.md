@@ -77,11 +77,15 @@ Parameters:
 * install_dir
     * Java Installation Directory
 * tmp_dir
-    * Temporary install directory  
+    * Temp directory to download the installer
 * version7update
-    * Java 7  Update version
+    * Latest Java 7  Update version
 * version7build
-    * Java 7 Build version
+    * Latest Java 7 Build version
+* version8update
+    * Latest Java 8  Update version
+* version8build
+    * Latest Java 8 Build version
 * arch 
     * parameter to provide support for other architectures, default 'x64'
 * use_cache
