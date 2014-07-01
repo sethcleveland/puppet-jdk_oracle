@@ -27,7 +27,7 @@ A) Traditional:
 B) From Puppet Forge
 * Install from Puppet Forge:
 ```
-puppet module install schrepfler-jdk_oracle
+$ puppet module install schrepfler-jdk_oracle
 ```
 
 C) Puppet Librarian:
