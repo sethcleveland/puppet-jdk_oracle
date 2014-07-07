@@ -16,8 +16,8 @@ class jdk_oracle(
 
     case $version {
         '7': {
-            $javaUpdate = hiera('jdk_oracle::version::7::update', '51')
-            $javaBuild = hiera('jdk_oracle::version::7::build', '13')
+            $javaUpdate = hiera('jdk_oracle::version::7::update', '60')
+            $javaBuild = hiera('jdk_oracle::version::7::build', '19')
         }
         '8': {
             $javaUpdate = hiera('jdk_oracle::version::8::update', '5')
