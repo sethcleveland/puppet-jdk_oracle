@@ -17,7 +17,7 @@ This module will work on Redhat family of OSs, and will use wget with a cookie t
 
 This approach was inspired by: http://stackoverflow.com/questions/10268583/how-to-automate-download-and-instalation-of-java-jdk-on-linux'
 
-Changes
+_Changes_
 Updated Java versions to Java 7u67 and Java 8u11
 Updated download process thanks to @alitheg
 Added support for arch thanks to @alitheg
