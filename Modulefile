@@ -1,5 +1,5 @@
 name 'schrepfler-jdk_oracle'
-version '0.8.1'
+version '0.9.0'
 
 author 'schrepfler'
 license 'Apache License, Version 2.0'
@@ -16,3 +16,8 @@ _Note:  By using this module you will automatically accept the Oracle agreement 
 This module will work on Redhat family of OSs, and will use wget with a cookie to automatically grab the RPM installer from Oracle.
 
 This approach was inspired by: http://stackoverflow.com/questions/10268583/how-to-automate-download-and-instalation-of-java-jdk-on-linux'
+
+Changes
+Updated Java versions to Java 7u67 and Java 8u11
+Updated download process thanks to @alitheg
+Added support for arch thanks to @alitheg

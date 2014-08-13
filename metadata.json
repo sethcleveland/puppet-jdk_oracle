@@ -6,19 +6,12 @@
   "project_page": "https://github.com/schrepfler/puppet-jdk_oracle",
   "source": "https://github.com/schrepfler/puppet-jdk_oracle",
   "summary": "Module for automating Oracle JDK download and installation by using the RPM binary distribution from oracle and wget.",
-  "version": "0.8.1",
-  "checksums": {
-    ".coveralls.yml": "f7fa8e2c3f9d9e140ead30f11a3331d1",
-    ".fixtures.yml": "90f95bab2d1a62a310e7aee1a20042d1",
-    ".gemfile": "8e30e138b8a8d6b2a7f5ab6f5c55fe66",
-    ".travis.yml": "d71fa4e5dda990e21f5ee72be416577c",
-    "LICENSE": "861b06b2d416ffc4b39d8ee9c31c41d2",
-    "Modulefile": "14df9c5b3e8e8628ca2f06f1d3f0d58a",
-    "README.md": "a2b95efed380e0758087c531e250da81",
-    "Rakefile": "1d918388747465c964b5751f424bd4bb",
-    "manifests\\init.pp": "a9d28d27cfbdc3748a66975b59858b5d",
-    "spec\\classes\\jdk_oracle_init_spec.rb": "f578cb7b50789558abcaae3086c8f458",
-    "spec\\spec_helper.rb": "febba4ea6203461231b34a14a0f8e549"
-  },
+  "version": "0.9.0",
+  "operatingsystem_support": [
+  {
+  "operatingsystem":"RedHat",
+  "operatingsystemrelease":[ "5.0", "6.0","7.0" ]
+  }
+  ],
   "dependencies": []
 }
