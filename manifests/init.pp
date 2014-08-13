@@ -56,6 +56,9 @@ class jdk_oracle(
             mode    => '0755',
             require => Exec['install_rpm'],
         }
+        package { 'wget':
+          ensure => present,
+        }
     }
 
     # Java 7 comes in a tarball so just extract it.
