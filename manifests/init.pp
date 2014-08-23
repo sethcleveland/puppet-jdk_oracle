@@ -20,8 +20,8 @@ class jdk_oracle(
             $javaBuild = hiera('jdk_oracle::version::7::build', '01')
         }
         '8': {
-            $javaUpdate = hiera('jdk_oracle::version::8::update', '11')
-            $javaBuild = hiera('jdk_oracle::version::8::build', '12')
+            $javaUpdate = hiera('jdk_oracle::version::8::update', '20')
+            $javaBuild = hiera('jdk_oracle::version::8::build', '26')
         }
         default: {
             fail("Unsupported version: ${version}.  Implement me?")
