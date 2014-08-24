@@ -21,4 +21,4 @@ matrix:
 gemfile: .gemfile
 notifications:
   email:
-    - travisci@tylerwalts.com
+    - schrepfler@gmail.com
