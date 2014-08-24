@@ -4,7 +4,7 @@
 # locally host the tarball from oracle instead of fetching it each time.
 #
 class jdk_oracle(
-    $version      = hiera('jdk_oracle::version', '7' ),
+    $version      = hiera('jdk_oracle::version', '8' ),
     $arch      = hiera('jdk_oracle::arch', 'x64' ),
     $install_dir  = hiera('jdk_oracle::install_dir', '/usr/java' ),
     $tmp_dir  = hiera('jdk_oracle::tmp_dir', '/tmp' ),
