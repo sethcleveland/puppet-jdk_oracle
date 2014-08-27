@@ -61,14 +61,11 @@ class jdk_oracle(
         }
     }
 
-    # Java 7 comes in a tarball so just extract it.
-    if ( $version == '7' ) {
-        exec { 'install_rpm':
+    exec { 'install_rpm':
             cwd     => "${tmp_dir}/",
             command => "rpm -i ${installerFilename}",
             creates => $java_home,
             require => Exec['get_jdk_installer'],
-        }
     }
 
     # Set links depending on osfamily or operating system fact
