@@ -61,13 +61,6 @@ class jdk_oracle(
         }
     }
 
-    exec { 'install_rpm':
-            cwd     => "${tmp_dir}/",
-            command => "rpm -i ${installerFilename}",
-            creates => $java_home,
-            require => Exec['get_jdk_installer'],
-    }
-
     # Set links depending on osfamily or operating system fact
     case $::osfamily {
         RedHat, Linux: {
@@ -95,6 +88,12 @@ class jdk_oracle(
                 ensure  => link,
                 target  => $java_home,
                 require => Exec['install_rpm'],
+            }
+            exec { 'install_rpm':
+            cwd     => "${tmp_dir}/",
+            command => "rpm -i ${installerFilename}",
+            creates => $java_home,
+            require => Exec['get_jdk_installer'],
             }
         }
         Debian:    { fail('TODO: Implement me!') }
