@@ -1,5 +1,6 @@
 puppet-jdk_oracle
 =================
+[![Build Status](https://travis-ci.org/schrepfler/puppet-jdk_oracle.svg?branch=master)](https://travis-ci.org/schrepfler/puppet-jdk_oracle)
 
 Puppet module to install a JDK from the RPM binary distribution from oracle using wget.
 Based on the https://github.com/tylerwalts/puppet-jdk_oracle this module removed support for JDK6 and the tgz installer.
