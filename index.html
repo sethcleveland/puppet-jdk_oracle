@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Puppet-jdk oracle : Puppet module to install JDK from oracle using wget">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Puppet-jdk oracle</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/schrepfler/puppet-jdk_oracle">View on GitHub</a>
+
+          <h1 id="project_title">Puppet-jdk oracle</h1>
+          <h2 id="project_tagline">Puppet module to install JDK from oracle using wget</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/schrepfler/puppet-jdk_oracle/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/schrepfler/puppet-jdk_oracle/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p><a href="https://travis-ci.org/schrepfler/puppet-jdk_oracle"><img src="https://travis-ci.org/schrepfler/puppet-jdk_oracle.svg?branch=master" alt="Build Status"></a> <a href="https://waffle.io/schrepfler/puppet-jdk_oracle"><img src="https://badge.waffle.io/schrepfler/puppet-jdk_oracle.png?label=ready&amp;title=Ready" alt="Stories in Ready"></a></p>
+
+<h1>
+<a id="puppet-jdk_oracle" class="anchor" href="#puppet-jdk_oracle" aria-hidden="true"><span class="octicon octicon-link"></span></a>puppet-jdk_oracle</h1>
+
+<p>Puppet module to install a JDK from the RPM binary distribution from oracle using wget.
+Based on the <a href="https://github.com/tylerwalts/puppet-jdk_oracle">https://github.com/tylerwalts/puppet-jdk_oracle</a> this module removed support for JDK6 and the tgz installer.</p>
+
+<p>Source: <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p>
+
+<p><em>Note:  By using this module you will automatically accept the Oracle agreement to download Java.</em></p>
+
+<p>This module will work on Redhat family of OSs, and will use wget with a cookie to automatically grab the RPM installer from Oracle.</p>
+
+<p>This approach was inspired by: <a href="http://stackoverflow.com/questions/10268583/how-to-automate-download-and-instalation-of-java-jdk-on-linux">http://stackoverflow.com/questions/10268583/how-to-automate-download-and-instalation-of-java-jdk-on-linux</a></p>
+
+<p>Currently Supported:</p>
+
+<ul>
+<li>RedHat Family (RedHat, Fedora, CentOS)</li>
+<li>Java 7 and Java 8</li>
+<li>64 and 32 bit architectures.</li>
+</ul>
+
+<h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation:</h1>
+
+<p>A) Traditional:</p>
+
+<ul>
+<li>Copy this project into your puppet modules path and rename to "jdk_oracle"</li>
+</ul>
+
+<p>B) From Puppet Forge</p>
+
+<ul>
+<li>Install from Puppet Forge:</li>
+</ul>
+
+<pre><code>$ puppet module install schrepfler-jdk_oracle
+</code></pre>
+
+<p>C) Puppet Librarian:</p>
+
+<ul>
+<li>Put this in your Puppetfile:</li>
+</ul>
+
+<pre><code>    mod "jdk_oracle",
+        :git =&gt; "git://github.com/schrepfler/puppet-jdk_oracle.git"
+</code></pre>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage:</h1>
+
+<p>A)  Traditional:</p>
+
+<pre><code>    include jdk_oracle
+</code></pre>
+
+<p>or</p>
+
+<pre><code>    class { 'jdk_oracle': }
+</code></pre>
+
+<p>B) Hiera:
+config.json:</p>
+
+<pre><code>    {
+        classes":[
+          "jdk_oracle"
+        ]
+    }
+</code></pre>
+
+<p>OR
+config.yaml:</p>
+
+<pre><code>---
+  classes: 
+    - "jdk_oracle"
+  jdk_oracle::version: "7"
+</code></pre>
+
+<p>site.pp:</p>
+
+<pre><code>    hiera_include("classes", [])
+</code></pre>
+
+<h1>
+<a id="parameters" class="anchor" href="#parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parameters:</h1>
+
+<ul>
+<li>version
+
+<ul>
+<li>Java Version to install</li>
+</ul>
+</li>
+<li>install_dir
+
+<ul>
+<li>Java Installation Directory</li>
+</ul>
+</li>
+<li>tmp_dir
+
+<ul>
+<li>Temp directory to download the installer, default <code>/tmp/</code>
+</li>
+</ul>
+</li>
+<li>version7update
+
+<ul>
+<li>Latest Java 7 Update version</li>
+</ul>
+</li>
+<li>version7build
+
+<ul>
+<li>Latest Java 7 Build version</li>
+</ul>
+</li>
+<li>version8update
+
+<ul>
+<li>Latest Java 8 Update version</li>
+</ul>
+</li>
+<li>version8build
+
+<ul>
+<li>Latest Java 8 Build version</li>
+</ul>
+</li>
+<li>arch 
+
+<ul>
+<li>parameter to provide support for other architectures, default <code>x64</code>
+</li>
+</ul>
+</li>
+<li>use_cache
+
+<ul>
+<li>Optionally host the installer file locally instead of fetching it each time, for faster dev &amp; test</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO:</h1>
+
+<ul>
+<li>Automate installation of security policies</li>
+<li>Refactor tests to support some use cases of the tgz module</li>
+<li>
+<del>Add support for 32-bit JDK</del>
+</li>
+<li>Add build status icons</li>
+<li>Make it possible to uninstall the jdk package</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Puppet-jdk oracle maintained by <a href="https://github.com/schrepfler">schrepfler</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-129345-8");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
