@@ -28,7 +28,7 @@ class jdk_oracle(
         }
     }
     
-    $java_home = "${install_dir}/jdk1.$version.0_$javaUpdate"
+    $java_home = "${install_dir}/jdk1.${version}.0_${javaUpdate}"
     $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/${version}u${javaUpdate}-b${javaBuild}/jdk-${version}u${javaUpdate}-linux-${arch}.rpm"
 
     $installerFilename = inline_template('<%= File.basename(@javaDownloadURI) %>')
