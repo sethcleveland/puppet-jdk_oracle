@@ -16,12 +16,12 @@ class jdk_oracle(
 
     case $version {
         '7': {
-            $javaUpdate = hiera('jdk_oracle::version::7::update', '67')
-            $javaBuild = hiera('jdk_oracle::version::7::build', '01')
+            $javaUpdate = hiera('jdk_oracle::version::7::update', '80')
+            $javaBuild = hiera('jdk_oracle::version::7::build', '15')
         }
         '8': {
-            $javaUpdate = hiera('jdk_oracle::version::8::update', '20')
-            $javaBuild = hiera('jdk_oracle::version::8::build', '26')
+            $javaUpdate = hiera('jdk_oracle::version::8::update', '73')
+            $javaBuild = hiera('jdk_oracle::version::8::build', '02')
         }
         default: {
             fail("Unsupported version: ${version}.  Implement me?")
@@ -63,7 +63,7 @@ class jdk_oracle(
 
     # Set links depending on osfamily or operating system fact
     case $::osfamily {
-        RedHat, Linux: {
+        'RedHat', 'Linux': {
             file { '/etc/alternatives/java':
                 ensure  => link,
                 target  => "${java_home}/bin/java",
@@ -96,12 +96,12 @@ class jdk_oracle(
             require => Exec['get_jdk_installer'],
             }
         }
-        Debian:    { fail('TODO: Implement me!') }
-        Suse:      { fail('TODO: Implement me!') }
-        Solaris:   { fail('TODO: Implement me!') }
-        Gentoo:    { fail('TODO: Implement me!') }
-        Archlinux: { fail('TODO: Implement me!') }
-        Mandrake:  { fail('TODO: Implement me!') }
+        'Debian':    { fail('TODO: Implement me!') }
+        'Suse':      { fail('TODO: Implement me!') }
+        'Solaris':   { fail('TODO: Implement me!') }
+        'Gentoo':    { fail('TODO: Implement me!') }
+        'Archlinux': { fail('TODO: Implement me!') }
+        'Mandrake':  { fail('TODO: Implement me!') }
         default:     { fail('Unsupported OS') }
     }
 
