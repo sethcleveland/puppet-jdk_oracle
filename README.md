@@ -102,9 +102,12 @@ Parameters:
 TODO:
 =====
 
-* Automate installation of security policies
+* Automate installation of security policies  [security policies reference][]
+* Handle JCE installation
 * Refactor tests to support some use cases of the tgz module
 * 
 ~~Add support for 32-bit JDK~~
 * Add build status icons
 * Make it possible to uninstall the jdk package
+
+[security policies reference]: https://docs.oracle.com/javase/7/docs/technotes/guides/security/PolicyFiles.html
