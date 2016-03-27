@@ -13,6 +13,10 @@ This module will work on Redhat family of OSs, and will use wget with a cookie t
 
 This approach was inspired by: http://stackoverflow.com/questions/10268583/how-to-automate-download-and-instalation-of-java-jdk-on-linux
 
+Default Version
+============
+JDK8) 8u77
+JDK7) 7u80
 
 Currently Supported:
 * RedHat Family (RedHat, Fedora, CentOS)
