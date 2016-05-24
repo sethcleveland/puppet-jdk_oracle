@@ -49,7 +49,7 @@ class jdk_oracle(
 
         if ! defined(File[$install_dir]) {
             file { $tmp_dir:
-                ensure => "directory",
+                ensure => 'directory',
             }
         }
 
