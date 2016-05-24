@@ -37,7 +37,7 @@ class jdk_oracle(
         notify { 'Using local cache for oracle java': }
         file { "${tmp_dir}/${installerFilename}":
             source  => "puppet:///modules/jdk_oracle/${installerFilename}",
-            require => File["${tmp_dir}"],
+            require => File[$tmp_dir],
         }
 
         exec { 'get_jdk_installer':
@@ -47,8 +47,8 @@ class jdk_oracle(
             require => File["${tmp_dir}/jdk-${version}u${javaUpdate}-linux-x64.rpm"],
         }
 
-        if ! defined(File["${install_dir}"]) {
-            file { "${tmp_dir}":
+        if ! defined(File[$install_dir]) {
+            file { $tmp_dir:
                 ensure => "directory",
             }
         }
@@ -115,7 +115,7 @@ class jdk_oracle(
         'Gentoo':    { fail('TODO: Implement me!') }
         'Archlinux': { fail('TODO: Implement me!') }
         'Mandrake':  { fail('TODO: Implement me!') }
-        default:     { fail('Unsupported OS') }
+        default:     { fail("Unsupported OS: ${::osfamily}.  Implement me?") }
     }
 
 }
