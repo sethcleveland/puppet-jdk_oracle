@@ -39,7 +39,7 @@ $ puppet module install schrepfler-jdk_oracle
 C) Puppet Librarian:
 * Put this in your Puppetfile:
 ```
-    mod "jdk_oracle",
+    mod "schrepfler/jdk_oracle",
         :git => "git://github.com/schrepfler/puppet-jdk_oracle.git"
 ```
 
