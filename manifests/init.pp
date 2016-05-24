@@ -151,7 +151,11 @@ class jdk_oracle(
           target  => '/etc/alternatives/jar',
           require => File['/etc/alternatives/jar'],
         }
-
+        file { '/etc/profile.d/java.sh':
+          ensure  => present,
+          content => "export JAVA_HOME=${java_home}",
+          require => Exec['extract_jdk'],
+        }
       }
       file { '/opt/java_home':
         ensure  => link,
