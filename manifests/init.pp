@@ -134,7 +134,7 @@ class jdk_oracle(
         file { '/etc/alternatives/jar':
           ensure  => link,
           target  => "${java_home}/bin/jar",
-          require => Exec['extract_jdk'],
+          require => Exec['install_rpm'],
         }
         file { '/usr/sbin/java':
           ensure  => link,
@@ -153,8 +153,8 @@ class jdk_oracle(
         }
         file { '/etc/profile.d/java.sh':
           ensure  => present,
-          content => "export JAVA_HOME=${java_home}",
-          require => Exec['extract_jdk'],
+          content => "export JAVA_HOME=${java_home}; PATH=\${PATH}:${java_home}/bin",
+          require => Exec['install_rpm'],
         }
       }
       file { '/opt/java_home':
