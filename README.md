@@ -22,7 +22,7 @@ Default Version
 Currently Supported:
 * RedHat Family (RedHat, Fedora, CentOS)
 * Java 7 and Java 8
-* 64 and 32 bit architectures.
+* Possiblity to choose between 64 bit `(arch=x64)` and 32 bit `(arch=i586)` architectures.
 
 Installation:
 =============

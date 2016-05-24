@@ -37,13 +37,22 @@ class jdk_oracle(
         notify { 'Using local cache for oracle java': }
         file { "${tmp_dir}/${installerFilename}":
             source  => "puppet:///modules/jdk_oracle/${installerFilename}",
+            require => File["${tmp_dir}"],
         }
+
         exec { 'get_jdk_installer':
             cwd     => $tmp_dir,
             creates => "${tmp_dir}/jdk_from_cache",
             command => 'touch jdk_from_cache',
             require => File["${tmp_dir}/jdk-${version}u${javaUpdate}-linux-x64.rpm"],
         }
+
+        if ! defined(File["${install_dir}"]) {
+            file { "${tmp_dir}":
+                ensure => "directory",
+            }
+        }
+
     } else {
         exec { 'get_jdk_installer':
             cwd     => $tmp_dir,
@@ -56,9 +65,13 @@ class jdk_oracle(
             mode    => '0755',
             require => Exec['install_rpm'],
         }
-        package { 'wget':
-          ensure => present,
+
+        if ! defined(Package['wget']) {
+            package { 'wget':
+              ensure => present,
+            }
         }
+
     }
 
     # Set links depending on osfamily or operating system fact
