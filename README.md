@@ -108,7 +108,8 @@ TODO:
 =====
 
 * Automate installation of security policies  [security policies reference][]
-* Handle JCE installation
+* 
+~~Handle JCE installation~~
 * Refactor tests to support some use cases of the tgz module
 * 
 ~~Add support for 32-bit JDK~~
