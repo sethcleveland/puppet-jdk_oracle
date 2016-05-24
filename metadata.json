@@ -1,6 +1,6 @@
 {
   "name": "schrepfler-jdk_oracle",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "author": "schrepfler",
   "summary": "Module for automating Oracle JDK download and installation by using the RPM binary distribution from oracle and wget.",
   "license": "Apache-2.0",
