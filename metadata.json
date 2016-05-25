@@ -2,7 +2,7 @@
   "name": "schrepfler-jdk_oracle",
   "version": "0.9.7",
   "author": "schrepfler",
-  "summary": "Module for automating Oracle JDK download and installation by using the RPM binary distribution from oracle and wget.",
+  "summary": "Module for automating Oracle JDK download and installation by using the RPM binary distribution from Oracle and wget.",
   "license": "Apache-2.0",
   "source": "https://github.com/schrepfler/puppet-jdk_oracle",
   "project_page": "https://github.com/schrepfler/puppet-jdk_oracle",
