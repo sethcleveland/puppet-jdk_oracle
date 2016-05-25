@@ -23,6 +23,7 @@ Currently Supported:
 * RedHat Family (RedHat, Fedora, CentOS)
 * Java 7 and Java 8
 * Possiblity to choose between 64 bit `(arch=x64)` and 32 bit `(arch=i586)` architectures.
+* Possibility to install JCE on JDK8
 
 Installation:
 =============
@@ -102,6 +103,10 @@ Parameters:
     * parameter to provide support for other architectures, default `x64`
 * use_cache
     * Optionally host the installer file locally instead of fetching it each time, for faster dev & test
+* jce
+    * if true will install the Java Cryptographic Extensions (default `false`)
+* default_java
+    * if true will make the JDK the default system java (default `true`)
 
 
 TODO:
