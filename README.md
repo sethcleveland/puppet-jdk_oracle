@@ -1,4 +1,8 @@
-[![Build Status](https://travis-ci.org/schrepfler/puppet-jdk_oracle.svg?branch=master)](https://travis-ci.org/schrepfler/puppet-jdk_oracle) [![Stories in Ready](https://badge.waffle.io/schrepfler/puppet-jdk_oracle.png?label=ready&title=Ready)](https://waffle.io/schrepfler/puppet-jdk_oracle)
+[![Build Status](https://travis-ci.org/schrepfler/puppet-jdk_oracle.svg?branch=master)](https://travis-ci.org/schrepfler/puppet-jdk_oracle)
+[![Stories in Ready](https://badge.waffle.io/schrepfler/puppet-jdk_oracle.png?label=ready&title=Ready)](https://waffle.io/schrepfler/puppet-jdk_oracle)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/schrepfler/jdk_oracle.svg?style=flat)](https://forge.puppetlabs.com/schrepfler/jdk_oracle)
+[![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/schrepfler/jdk_oracle.svg)](https://forge.puppetlabs.com/schrepfler/jdk_oracle)
+
 puppet-jdk_oracle
 =================
 
