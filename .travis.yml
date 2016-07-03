@@ -3,6 +3,7 @@ rvm:
   - 1.9.3
   - ruby-head
 script:
+  - git clone https://github.com/puppetlabs/puppetlabs-stdlib.git ../stdlib
   - "bundle exec rake lint"
   - "bundle exec rake spec SPEC_OPTS='--format documentation'"
 env:
