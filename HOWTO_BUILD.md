@@ -2,14 +2,14 @@ Requirement
 ========
 - Installation of build environment (vagrant)
 
-(for this image puppet binary is /opt/puppetlabs/bin/puppet so you mighth need to use that in the commands)
+(for this image puppet binary is /opt/puppetlabs/bin/puppet so we'll alias it)
 ```shell
 vagrant box add rhel7-puppet4 https://github.com/CommanderK5/packer-centos-template/releases/download/0.7.1/vagrant-centos-7.1.box
 vagrant up
 vagrant ssh
-sudo yum update
 sudo yum makecache
 sudo yum install -y git nano
+alias puppet=/opt/puppetlabs/bin/puppet
 cd /vagrant
 ```
 
@@ -17,7 +17,6 @@ cd /vagrant
 vagrant box add rhel7-puppet3 https://github.com/tommy-muehle/puppet-vagrant-boxes/releases/download/1.0.0/centos-6.6-x86_64.box
 vagrant up
 vagrant ssh
-sudo yum update
 sudo yum makecache
 sudo yum install -y git nano
 cd /vagrant
