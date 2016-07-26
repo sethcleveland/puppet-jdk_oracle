@@ -9,3 +9,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - BREAKING The JDK version has been transformed from string to integer @030
+- Updating default JDK8 to update 101
