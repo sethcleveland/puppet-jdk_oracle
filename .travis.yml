@@ -1,8 +1,7 @@
 language: ruby
 rvm:
   - 1.9.3
-  - 2.0.0
-  - ruby-head
+  - 2.1.5
 script:
   - git clone https://github.com/puppetlabs/puppetlabs-stdlib.git ../stdlib
   - "bundle exec rake lint"
