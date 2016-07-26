@@ -1,6 +1,7 @@
 language: ruby
 rvm:
   - 1.9.3
+  - 2.0.0
   - ruby-head
 script:
   - git clone https://github.com/puppetlabs/puppetlabs-stdlib.git ../stdlib
@@ -11,6 +12,12 @@ env:
   - PUPPET_VERSION="~> 3.1.0"
   - PUPPET_VERSION="~> 3.2.0"
   - PUPPET_VERSION="~> 3.3.0"
+  - PUPPET_VERSION="~> 3.4.0"
+  - PUPPET_VERSION="~> 4.0.0"
+  - PUPPET_VERSION="~> 4.1.0"
+  - PUPPET_VERSION="~> 4.2.3"
+  - PUPPET_VERSION="~> 4.4.2"
+  - PUPPET_VERSION="~> 4.5.3"
 matrix:
   allow_failures:
     - rvm: ruby-head
