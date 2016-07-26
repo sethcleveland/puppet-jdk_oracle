@@ -20,7 +20,7 @@ This approach was inspired by: http://stackoverflow.com/questions/10268583/how-t
 Default Version
 ============
 
-* JDK8 8u91
+* JDK8 8u101
 * JDK7 7u80
 
 Currently Supported:
