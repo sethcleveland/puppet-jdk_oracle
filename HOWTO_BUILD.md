@@ -9,7 +9,8 @@ vagrant up
 vagrant ssh
 sudo yum update
 sudo yum makecache
-sudo yum install git nano
+sudo yum install -y git nano
+cd /vagrant
 ```
 
 - Cleanup any previous packages
@@ -25,7 +26,12 @@ rm -rf ./pkg
 ```shell
 vagrant ssh
 cd /vagrant
+sudo git clone https://github.com/puppetlabs/puppetlabs-stdlib.git ../stdlib
 /opt/puppetlabs/bin/puppet module build .
+cd pkg
+/opt/puppetlabs/bin/puppet module install schrepfler-jdk_oracle-x.y.z.tar.gz 
+# this should install the module into /home/vagrant/.puppetlabs/etc/code/modules
+sudo /opt/puppetlabs/bin/puppet apply --modulepath /home/vagrant/.puppetlabs/etc/code/modules ../test/manifests/site.pp
 ```
 
 Upload module to pupetforge
