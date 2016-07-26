@@ -2,9 +2,9 @@ Requirement
 ========
 - Installation of build environment (vagrant)
 
+(for this image puppet binary is /opt/puppetlabs/bin/puppet so you mighth need to use that in the commands)
 ```shell
-vagrant box add rhel7 https://github.com/CommanderK5/packer-centos-template/releases/download/0.7.1/vagrant-centos-7.1.box
-vagrant init rhel7
+vagrant box add rhel7-puppet4 https://github.com/CommanderK5/packer-centos-template/releases/download/0.7.1/vagrant-centos-7.1.box
 vagrant up
 vagrant ssh
 sudo yum update
@@ -12,6 +12,18 @@ sudo yum makecache
 sudo yum install -y git nano
 cd /vagrant
 ```
+
+```shell
+vagrant box add rhel7-puppet3 https://github.com/tommy-muehle/puppet-vagrant-boxes/releases/download/1.0.0/centos-6.6-x86_64.box
+vagrant up
+vagrant ssh
+sudo yum update
+sudo yum makecache
+sudo yum install -y git nano
+cd /vagrant
+```
+
+(switch VM by editing Vagrantfile and choosing image rhel7-puppet4 or rhel7-puppet3)
 
 - Cleanup any previous packages
 ```shell
@@ -27,11 +39,11 @@ rm -rf ./pkg
 vagrant ssh
 cd /vagrant
 sudo git clone https://github.com/puppetlabs/puppetlabs-stdlib.git ../stdlib
-/opt/puppetlabs/bin/puppet module build .
+puppet module build .
 cd pkg
-/opt/puppetlabs/bin/puppet module install schrepfler-jdk_oracle-x.y.z.tar.gz 
-# this should install the module into /home/vagrant/.puppetlabs/etc/code/modules
-sudo /opt/puppetlabs/bin/puppet apply --modulepath /home/vagrant/.puppetlabs/etc/code/modules ../test/manifests/site.pp
+puppet module install schrepfler-jdk_oracle-x.y.z.tar.gz
+# this should install the module into /home/vagrant/.puppetlabs/etc/code/modules but also /home/vagrant/.puppet/modules/ depending which puppet server you use
+sudo puppet apply --modulepath /home/vagrant/.puppetlabs/etc/code/modules /vagrant/test/manifests/site.pp
 ```
 
 Upload module to pupetforge
