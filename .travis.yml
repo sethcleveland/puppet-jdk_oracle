@@ -7,7 +7,7 @@ script:
   - "bundle exec rake spec SPEC_OPTS='--format documentation'"
 env:
   - PUPPET_VERSION="~> 3.0.0"
-  - PUPPET_VERSION="~> 4.5.3"
+  - PUPPET_VERSION="~> 4.0.0"
 matrix:
   allow_failures:
   exclude:
