@@ -51,11 +51,11 @@ class jdk_oracle (
 
   case $version {
     7       : {
-      $javaUpdate = hiera('jdk_oracle::version::7::update', 80)
+      $java_update = hiera('jdk_oracle::version::7::update', 80)
       $javaBuild = hiera('jdk_oracle::version::7::build', 15)
     }
     8       : {
-      $javaUpdate = hiera('jdk_oracle::version::8::update', 111)
+      $java_update = hiera('jdk_oracle::version::8::update', 111)
       $javaBuild = hiera('jdk_oracle::version::8::build', 13)
     }
     default : {
@@ -63,18 +63,18 @@ class jdk_oracle (
     }
   }
 
-  $java_home = "${install_dir}/jdk1.${version}.0_${javaUpdate}"
-  $javaDownloadURI = "http://download.oracle.com/otn-pub/java/jdk/${version}u${javaUpdate}-b${javaBuild}/jdk-${version}u${javaUpdate}-linux-${arch}.rpm"
-  $jceDownloadURI = 'http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip'
-  $installerFilename = inline_template('<%= File.basename(@javaDownloadURI) %>')
+  $java_home = "${install_dir}/jdk1.${version}.0_${java_update}"
+  $java_download_uri = "http://download.oracle.com/otn-pub/java/jdk/${version}u${java_update}-b${javaBuild}/jdk-${version}u${java_update}-linux-${arch}.rpm"
+  $jce_download_uri = 'http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip'
+  $installer_filename = inline_template('<%= File.basename(@java_download_uri) %>')
   $wget_header = 'wget -c --no-cookies --no-check-certificate --header'
   $cookie = "\"Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com; oraclelicense=accept-securebackup-cookie\""
 
   if ($use_cache) {
     notify { 'Using local cache for oracle java': }
 
-    file { "${tmp_dir}/${installerFilename}":
-      source  => "${cache_source}${installerFilename}",
+    file { "${tmp_dir}/${installer_filename}":
+      source  => "${cache_source}${installer_filename}",
       require => File[$tmp_dir],
     }
 
@@ -82,7 +82,7 @@ class jdk_oracle (
       cwd     => $tmp_dir,
       creates => "${tmp_dir}/jdk_from_cache",
       command => 'touch jdk_from_cache',
-      require => File["${tmp_dir}/jdk-${version}u${javaUpdate}-linux-x64.rpm"],
+      require => File["${tmp_dir}/jdk-${version}u${java_update}-linux-x64.rpm"],
     }
 
     if !defined(File[$install_dir]) {
@@ -91,13 +91,13 @@ class jdk_oracle (
   } else {
     exec { 'get_jdk_installer':
       cwd     => $tmp_dir,
-      creates => "${tmp_dir}/${installerFilename}",
-      command => "${wget_header} ${cookie} \"${javaDownloadURI}\" -O ${installerFilename}",
+      creates => "${tmp_dir}/${installer_filename}",
+      command => "${wget_header} ${cookie} \"${java_download_uri}\" -O ${installer_filename}",
       timeout => 600,
       require => Package['wget'],
     }
 
-    file { "${tmp_dir}/${installerFilename}":
+    file { "${tmp_dir}/${installer_filename}":
       mode    => '0755',
       require => Exec['install_rpm'],
     }
@@ -167,7 +167,7 @@ class jdk_oracle (
 
       exec { 'install_rpm':
         cwd     => "${tmp_dir}/",
-        command => "rpm -i ${installerFilename}",
+        command => "rpm -i ${installer_filename}",
         creates => $java_home,
         require => Exec['get_jdk_installer'],
       }
@@ -196,12 +196,12 @@ class jdk_oracle (
   }
 
   if ($jce and $version == '8') {
-    $jceFilename = inline_template('<%= File.basename(@jceDownloadURI) %>')
+    $jce_filename = inline_template('<%= File.basename(@jce_download_uri) %>')
     $jce_dir = 'UnlimitedJCEPolicyJDK8'
 
     if ($use_cache) {
-      file { "${tmp_dir}/${jceFilename}":
-        source  => "${cache_source}${jceFilename}",
+      file { "${tmp_dir}/${jce_filename}":
+        source  => "${cache_source}${jce_filename}",
         require => File[$install_dir],
       } ->
       exec { 'get_jce_package':
@@ -212,13 +212,13 @@ class jdk_oracle (
     } else {
       exec { 'get_jce_package':
         cwd     => $install_dir,
-        creates => "${install_dir}/${jceFilename}",
-        command => "${wget_header} ${cookie} \"${jceDownloadURI}\" -O ${jceFilename}",
+        creates => "${install_dir}/${jce_filename}",
+        command => "${wget_header} ${cookie} \"${jce_download_uri}\" -O ${jce_filename}",
         timeout => 600,
         require => Package['wget'],
       }
 
-      file { "${install_dir}/${jceFilename}":
+      file { "${install_dir}/${jce_filename}":
         mode    => '0755',
         require => Exec['get_jce_package'],
       }
@@ -227,7 +227,7 @@ class jdk_oracle (
 
     exec { 'extract_jce':
       cwd     => "${install_dir}/",
-      command => "unzip ${jceFilename}",
+      command => "unzip ${jce_filename}",
       creates => "${install_dir}/${jce_dir}",
       require => [Exec['get_jce_package'], Package['unzip']],
     }
