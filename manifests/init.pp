@@ -55,7 +55,7 @@ class jdk_oracle (
       $javaBuild = hiera('jdk_oracle::version::7::build', 15)
     }
     8       : {
-      $javaUpdate = hiera('jdk_oracle::version::8::update', 101)
+      $javaUpdate = hiera('jdk_oracle::version::8::update', 111)
       $javaBuild = hiera('jdk_oracle::version::8::build', 13)
     }
     default : {
