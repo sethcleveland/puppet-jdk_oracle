@@ -20,7 +20,7 @@ This approach was inspired by: http://stackoverflow.com/questions/10268583/how-t
 Default Version
 ============
 
-* JDK8 8u101
+* JDK8 8u111
 * JDK7 7u80
 
 Currently Supported:
@@ -75,7 +75,7 @@ OR
 config.yaml:
 ```
 ---
-  classes: 
+  classes:
     - "jdk_oracle"
   jdk_oracle::version: 7
 ```
@@ -103,7 +103,7 @@ Parameters:
     * Latest Java 8 Update version
 * version8build
     * Latest Java 8 Build version
-* arch 
+* arch
     * parameter to provide support for other architectures, default `x64`
 * use_cache
     * Optionally host the installer file locally instead of fetching it each time, for faster dev & test
@@ -117,12 +117,12 @@ TODO:
 =====
 
 * Automate installation of security policies  [security policies reference][]
-* 
+*
 ~~Handle JCE installation~~
 * Refactor tests to support some use cases of the tgz module
-* 
+*
 ~~Add support for 32-bit JDK~~
-* 
+*
 ~~Add build status icons~~
 * Make it possible to uninstall the jdk package
 * Automate a bit the release process (bump README, Contributors, changelog...)
