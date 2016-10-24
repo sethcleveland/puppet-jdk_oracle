@@ -52,11 +52,11 @@ class jdk_oracle (
   case $version {
     7       : {
       $java_update = hiera('jdk_oracle::version::7::update', 80)
-      $javaBuild = hiera('jdk_oracle::version::7::build', 15)
+      $java_build = hiera('jdk_oracle::version::7::build', 15)
     }
     8       : {
       $java_update = hiera('jdk_oracle::version::8::update', 111)
-      $javaBuild = hiera('jdk_oracle::version::8::build', 13)
+      $java_build = hiera('jdk_oracle::version::8::build', 13)
     }
     default : {
       fail("Unsupported version: ${version}. Supported versions are 7 and 8")
@@ -64,7 +64,7 @@ class jdk_oracle (
   }
 
   $java_home = "${install_dir}/jdk1.${version}.0_${java_update}"
-  $java_download_uri = "http://download.oracle.com/otn-pub/java/jdk/${version}u${java_update}-b${javaBuild}/jdk-${version}u${java_update}-linux-${arch}.rpm"
+  $java_download_uri = "http://download.oracle.com/otn-pub/java/jdk/${version}u${java_update}-b${java_build}/jdk-${version}u${java_update}-linux-${arch}.rpm"
   $jce_download_uri = 'http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip'
   $installer_filename = inline_template('<%= File.basename(@java_download_uri) %>')
   $wget_header = 'wget -c --no-cookies --no-check-certificate --header'
