@@ -26,7 +26,7 @@ cd /vagrant
 
 - Cleanup any previous packages
 ```shell
-rm -rf ./pkg
+rm -rf /vagrant/pkg
 ```
 
 - Make modifications to module (if bump to java, change default values and bump tests as well.)
