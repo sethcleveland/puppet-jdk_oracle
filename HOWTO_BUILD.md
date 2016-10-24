@@ -29,7 +29,7 @@ cd /vagrant
 rm -rf ./pkg
 ```
 
-- Make modifications to module
+- Make modifications to module (if bump to java, change default values and bump tests as well.)
 - Make modifications to _metadata.json_
 - Make modifications to README.md
 - Commit, push, wait for tests available https://travis-ci.org/schrepfler/puppet-jdk_oracle
