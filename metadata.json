@@ -1,6 +1,6 @@
 {
 	"name": "schrepfler-jdk_oracle",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"author": "schrepfler",
 	"summary": "Module to install a JDK from the RPM binary distribution from oracle using wget.",
 	"license": "Apache-2.0",
