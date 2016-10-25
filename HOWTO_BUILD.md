@@ -1,50 +1,26 @@
 Requirement
 ========
-- Installation of build environment (vagrant)
+- Installation of build environment (bootstrapped by Vagrantfile.)
 
-(for this image puppet binary is /opt/puppetlabs/bin/puppet so we'll alias it)
 ```shell
-vagrant box add rhel7-puppet4 https://github.com/CommanderK5/packer-centos-template/releases/download/0.7.1/vagrant-centos-7.1.box
 vagrant up
 vagrant ssh
-sudo yum makecache
-sudo yum install -y git nano
-alias puppet=/opt/puppetlabs/bin/puppet
-cd /vagrant
-```
-
-```shell
-vagrant box add rhel7-puppet3 https://github.com/tommy-muehle/puppet-vagrant-boxes/releases/download/1.0.0/centos-6.6-x86_64.box
-vagrant up
-vagrant ssh
-sudo yum makecache
-sudo yum install -y git nano
-cd /vagrant
-```
-
-(switch VM by editing Vagrantfile and choosing image rhel7-puppet4 or rhel7-puppet3)
-
-- Cleanup any previous packages
-```shell
+sudo git clone https://github.com/puppetlabs/puppetlabs-stdlib.git /stdlib
 rm -rf /vagrant/pkg
+cd /vagrant
+puppet module build .
+cd /vagrant/pkg
+puppet module install schrepfler-jdk_oracle-x.y.z.tar.gz
+sudo su
+puppet apply --modulepath /home/vagrant/.puppetlabs/etc/code/modules /vagrant/test/manifests/site.pp
 ```
 
 - Make modifications to module (if bump to java, change default values and bump tests as well.)
 - Make modifications to _metadata.json_
-- Make modifications to README.md
-- Make modifications to CHANGELOG.md
+- Make modifications to README.md.
+- Make modifications to CHANGELOG.md.
 - Commit, push, wait for tests available https://travis-ci.org/schrepfler/puppet-jdk_oracle
-- Enter VM and build tgz
-```shell
-vagrant ssh
-cd /vagrant
-sudo git clone https://github.com/puppetlabs/puppetlabs-stdlib.git ../stdlib
-puppet module build .
-cd pkg
-puppet module install schrepfler-jdk_oracle-x.y.z.tar.gz
-# this should install the module into /home/vagrant/.puppetlabs/etc/code/modules but also /home/vagrant/.puppet/modules/ depending which puppet server you use
-sudo puppet apply --modulepath /home/vagrant/.puppetlabs/etc/code/modules /vagrant/test/manifests/site.pp
-```
+- Enter VM and build tgz.
 
 Upload module to pupetforge
 ======
