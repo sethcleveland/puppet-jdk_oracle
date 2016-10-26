@@ -40,6 +40,7 @@ $ puppet module install schrepfler-jdk_oracle
 ```
 
 * With Puppet Librarian
+
 > Put this in your Puppetfile:
 
 ```
