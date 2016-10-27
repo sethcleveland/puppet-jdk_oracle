@@ -36,16 +36,14 @@ Installation
 * From Puppet Forge
 > Install from Puppet Forge:
 ```
-puppet module install schrepfler-jdk_oracle
+$ puppet module install schrepfler-jdk_oracle
 ```
 
-* With Puppet Librarian
-
+* Puppet Librarian:
 > Put this in your Puppetfile:
-
 ```
-mod "schrepfler/jdk_oracle",
-    :git => "git://github.com/schrepfler/puppet-jdk_oracle.git"
+    mod "schrepfler/jdk_oracle",
+        :git => "git://github.com/schrepfler/puppet-jdk_oracle.git"
 ```
 
 Usage
@@ -87,22 +85,27 @@ hiera_include("classes", [])
 Parameters:
 ----
 
-* version
-> Java Version to install.
-* arch
-> parameter to provide support for other architectures, default `x64`.
-* install_dir
-> Java Installation Directory.
-* tmp_dir
-> Temp directory to download the installer, default `/tmp`.
-* use_cache
-> Optionally host the installer file locally instead of fetching it each time, for faster dev & test.
-* cache_source
-> The directory where the installer will be cached.
-* jce
-> if true will install the Java Cryptographic Extensions (default `false`.)
-* default_java
-> if true the module will set the installed JDK to be the default system java (default `true`.)
+**version** (*integer `7` | `8`*) - *Java version to install.*
+
+**arch** (*enum `'x64'`|`'586'`*) - *parameter to provide support for other architectures, default `'x64'`.*
+
+**install_dir** (*string*)
+*- Java installation directory.*
+
+**tmp_dir** (*string*)
+*- Temp directory to download the installer, default `'/tmp'`.*
+
+**use_cache** (*string*)
+*- Optionally host the installer file locally instead of fetching it each time, for faster dev & test.*
+
+**cache_source** (*string*)
+*- The directory where the installer will be cached.*
+
+**jce**  (*boolean*)
+*- if true will install the Java Cryptographic Extensions (default `false`.)*
+
+**default_java** (*boolean*)
+*- if true the module will set the installed JDK to be the default system java (default `true`.)*
 
 TODO:
 ---
