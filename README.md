@@ -24,7 +24,7 @@ Features
 ----
 * RedHat Family (RedHat, Fedora, CentOS)
 * Java 7 and Java 8
-* Possiblity to choose between 64 bit `arch=x64` (default) and 32 bit `arch=i586` architectures.
+* Possibility to choose between 64 bit `arch=x64` (default) and 32 bit `arch=i586` architectures.
 * Possibility to install JCE on JDK8
 
 Installation
@@ -39,7 +39,7 @@ Installation
 $ puppet module install schrepfler-jdk_oracle
 ```
 
-* Puppet Librarian:
+* Puppet Librarian
 > Put this in your Puppetfile:
 ```
     mod "schrepfler/jdk_oracle",
