@@ -1,6 +1,5 @@
 language: ruby
 rvm:
-  - 1.8.7
   - 2.1.5
 script:
   - git clone https://github.com/puppetlabs/puppetlabs-stdlib.git ../stdlib
@@ -12,10 +11,6 @@ env:
 matrix:
   allow_failures:
   exclude:
-    - rvm: 2.1.5
-      env: PUPPET_VERSION="~> 3.8.7"
-    - rvm: 1.8.7
-      env: PUPPET_VERSION="~> 4.7.0"
 gemfile: .gemfile
 notifications:
   email:
