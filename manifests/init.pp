@@ -89,6 +89,11 @@ class jdk_oracle (
       file { $tmp_dir: ensure => 'directory', }
     }
   } else {
+    exec { 'remove_empty_jdk_installer':
+      cwd     => $tmp_dir,
+      command => "rm -f ${installer_filename}",
+      unless  => "test -s ${installer_filename}",
+    } ->
     exec { 'get_jdk_installer':
       cwd     => $tmp_dir,
       creates => "${tmp_dir}/${installer_filename}",
